@@ -1,32 +1,25 @@
 <?php
 require("./include/parsedown-1.8.0-beta-5/Parsedown.php");
 require("./include/parsedown-extra-0.8.0-beta-1/ParsedownExtra.php");
-//require("./include/parsedown-1.7.1/Parsedown.php");
-//require("./include/parsedown-extra-0.7.1/ParsedownExtra.php");
 require("./include/parsedown-extreme-0.1.2/ParsedownExtreme.php");
-require("./include/parsedown-tablespan-1.0.0/ParsedownTablespan.php");
-require("./include/parsedown-checkbox-0.0.2/ParsedownCheckbox.php");
+require("./include/parsedown-tablespan-1.1.0/ParsedownTablespan.php");
 require("./include/simplehtmldom_1_7/simple_html_dom.php");
+ob_start();
 require("./include/emoji-shortname-to-hex/emoji_unicode.php");
+eval(preg_replace("/<\?([^\\0]*)\?>/m","$1",ob_get_clean()));
+ob_end_clean();
 class ParsedownFinal extends ParsedownExtreme
 {
-	private $tablespan_object,$tablespan_method,$checkbox_object,$checkbox_method;
+	private $tablespan_object,$tablespan_method;
 	public function __construct()
 	{
 		$this->tablespan_object=new ParsedownTablespan();
 		$this->tablespan_method=new ReflectionMethod('ParsedownTablespan','blockTableComplete');
 		$this->tablespan_method->setAccessible(true);
-		$this->checkbox_object=new ParsedownCheckbox();
-		$this->checkbox_method=new ReflectionMethod('ParsedownCheckbox','blockListComplete');
-		$this->checkbox_method->setAccessible(true);
 	}
 	protected function blockTableComplete(array $Block)
 	{
 		return $this->tablespan_method->invoke($this->tablespan_object,$Block);
-	}
-	protected function blockListComplete(array $block)
-	{
-		return $this->checkbox_method->invoke($this->checkbox_object,$block);
 	}
 }
 $url=((@$_SERVER["HTTPS"]==="on")?"https":"http")."://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];

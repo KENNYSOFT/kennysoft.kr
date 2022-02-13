@@ -247,13 +247,3 @@ RewriteCond %{REQUEST_URI} ^/(.*)\.amp.html$ [NC]
 RewriteCond %{DOCUMENT_ROOT}/%1.amp.html !-f
 RewriteCond %{DOCUMENT_ROOT}/%1.md -f
 RewriteRule ^(.*)$ /markdown.amp.php?md=%1.md [L]
-
-RewriteCond %{REQUEST_URI} ^/(.*)\.ia.html$ [NC]
-RewriteCond %{DOCUMENT_ROOT}/%1.ia.html !-f
-RewriteCond %{DOCUMENT_ROOT}/%1.md -f
-RewriteRule ^(.*)$ /markdown.ia.php?md=%1.md [L]
-
-RewriteCond %{REQUEST_URI} ^/(.*)\.print.html$ [NC]
-RewriteCond %{DOCUMENT_ROOT}/%1.print.html !-f
-RewriteCond %{DOCUMENT_ROOT}/%1.md -f
-RewriteRule ^(.*)$ /markdown.print.php?md=%1.md [L]

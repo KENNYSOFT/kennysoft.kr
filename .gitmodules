@@ -1,0 +1,18 @@
+[submodule "include/parsedown-1.8.0-beta-5"]
+	path = include/parsedown-1.8.0-beta-5
+	url = git@github.com:erusev/parsedown.git
+[submodule "include/parsedown-extra-0.8.0-beta-1"]
+	path = include/parsedown-extra-0.8.0-beta-1
+	url = git@github.com:erusev/parsedown-extra.git
+[submodule "include/parsedown-extreme-0.1.2"]
+	path = include/parsedown-extreme-0.1.2
+	url = git@github.com:BenjaminHoegh/parsedown-extreme.git
+[submodule "include/parsedown-tablespan-1.1.0"]
+	path = include/parsedown-tablespan-1.1.0
+	url = git@github.com:KENNYSOFT/parsedown-tablespan.git
+[submodule "include/simplehtmldom_1_7"]
+	path = include/simplehtmldom_1_7
+	url = git@github.com:simplehtmldom/simplehtmldom.git
+[submodule "include/emoji-shortname-to-hex"]
+	path = include/emoji-shortname-to-hex
+	url = git@github.com:davidsword/emoji-shortname-to-hex.git
