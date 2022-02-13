@@ -28,7 +28,6 @@ RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R=permanent,L]
 # Force HTTPS for some environments
 RewriteCond %{HTTP_USER_AGENT} !(Android|iPhone|iPad) [NC]
 RewriteCond %{HTTP_HOST} !^(rixcloud|nossl|127.0.0.2|manager\.fontrix|nossl\.localhost) [NC]
-RewriteCond %{REQUEST_URI} !^(/\.well-known/acme-challenge)
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=permanent,L]
 
@@ -53,11 +52,6 @@ RewriteCond %{DOCUMENT_ROOT}/KennyFont%{REQUEST_URI} -d
 RewriteCond %{REQUEST_URI} ^(.*)[^/]$
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [R=permanent,L]
 
-RewriteCond %{HTTP_HOST} ^font\.kennysoft\.kr [NC]
-RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
-RewriteCond %{ENV:REDIRECT_STATUS} ^$
-RewriteRule ^(.*)$ /KennyFont%{REQUEST_URI} [L]
-
 # KENNYPDF
 RewriteCond %{HTTP_HOST} !^pdf\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
@@ -71,11 +65,6 @@ RewriteCond %{REQUEST_URI} ^.*[^/]$
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTPS}:s on:(s)
 RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
-
-RewriteCond %{HTTP_HOST} ^pdf\.kennysoft\.kr [NC]
-RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
-RewriteCond %{ENV:REDIRECT_STATUS} ^$
-RewriteRule ^(.*)$ /KENNYPDF%{REQUEST_URI} [L]
 
 # SSS
 RewriteCond %{HTTP_HOST} !^sss\.kennysoft\.kr [NC]
@@ -91,11 +80,6 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTPS}:s on:(s)
 RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
 
-RewriteCond %{HTTP_HOST} ^sss\.kennysoft\.kr [NC]
-RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
-RewriteCond %{ENV:REDIRECT_STATUS} ^$
-RewriteRule ^(.*)$ /sss%{REQUEST_URI} [L]
-
 # SSSS
 RewriteCond %{HTTP_HOST} !^ssss\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
@@ -107,11 +91,6 @@ RewriteCond %{HTTP_HOST} ^ssss\.kennysoft\.kr [NC]
 RewriteCond %{DOCUMENT_ROOT}/ssss%{REQUEST_URI} -d
 RewriteCond %{REQUEST_URI} ^(.*)[^/]$
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [R=permanent,L]
-
-RewriteCond %{HTTP_HOST} ^ssss\.kennysoft\.kr [NC]
-RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
-RewriteCond %{ENV:REDIRECT_STATUS} ^$
-RewriteRule ^(.*)$ /ssss%{REQUEST_URI} [L]
 
 # Course
 RewriteCond %{HTTP_HOST} !^course\.kennysoft\.kr [NC]
@@ -126,11 +105,6 @@ RewriteCond %{REQUEST_URI} ^.*[^/]$
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTPS}:s on:(s)
 RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
-
-RewriteCond %{HTTP_HOST} ^course\.kennysoft\.kr [NC]
-RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
-RewriteCond %{ENV:REDIRECT_STATUS} ^$
-RewriteRule ^(.*)$ /course%{REQUEST_URI} [L]
 
 # RixCloud
 RewriteCond %{HTTP_HOST} ^rixcloud\.kennysoft\.kr [NC]
@@ -190,11 +164,6 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTPS}:s on:(s)
 RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
 
-RewriteCond %{HTTP_HOST} ^blog\.kennysoft\.kr [NC]
-RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
-RewriteCond %{ENV:REDIRECT_STATUS} ^$
-RewriteRule ^(.*)$ /blog%{REQUEST_URI} [L]
-
 # WcR2
 RewriteCond %{HTTP_HOST} !^wcr2\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
@@ -209,11 +178,6 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTPS}:s on:(s)
 RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
 
-RewriteCond %{HTTP_HOST} ^wcr2\.kennysoft\.kr [NC]
-RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
-RewriteCond %{ENV:REDIRECT_STATUS} ^$
-RewriteRule ^(.*)$ /WzComparerR2%{REQUEST_URI} [L]
-
 # ALPS
 #RewriteCond %{HTTP_HOST} !^alps\.kennysoft\.kr [NC]
 #RewriteCond %{HTTP_HOST} !localhost [NC]
@@ -227,11 +191,6 @@ RewriteRule ^(.*)$ /WzComparerR2%{REQUEST_URI} [L]
 #RewriteCond %{HTTPS} off [OR]
 #RewriteCond %{HTTPS}:s on:(s)
 #RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
-
-#RewriteCond %{HTTP_HOST} ^alps\.kennysoft\.kr [NC]
-#RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
-#RewriteCond %{ENV:REDIRECT_STATUS} ^$
-#RewriteRule ^(.*)$ /ALPS%{REQUEST_URI} [L]
 
 # Markdown
 RewriteCond %{REQUEST_URI} ^(.*)/$
