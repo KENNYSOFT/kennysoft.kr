@@ -1,0 +1,16 @@
+AuthType Basic
+AuthName "ssss"
+AuthUserFile /home/kennysoft/html/ssss/.htpasswd
+Order Deny,Allow
+Deny from all
+Deny from env=!HTTPS
+Require user kennysoft
+Satisfy Any
+
+Options All Indexes FollowSymLinks
+IndexOptions FancyIndexing FoldersFirst HTMLTable IgnoreCase NameWidth=* SuppressDescription SuppressIcon SuppressRules VersionSort
+IndexIgnore ..
+IndexOrderDefault Descending Date
+AddType text/html .html
+HeaderName /autoindex/HEADER-ssss.html
+ReadmeName /autoindex/README.html

@@ -1,0 +1,6 @@
+Options All Indexes FollowSymLinks
+IndexOptions FancyIndexing FoldersFirst HTMLTable IgnoreCase NameWidth=* SuppressDescription SuppressIcon SuppressRules VersionSort
+IndexIgnore ..
+AddType text/html .html
+HeaderName /autoindex/HEADER-WzComparerR2.html
+ReadmeName /autoindex/README.html

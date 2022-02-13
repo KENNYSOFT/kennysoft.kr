@@ -1,0 +1,3 @@
+Options +Indexes +FollowSymLinks
+IndexOptions FancyIndexing FoldersFirst HTMLTable IconsAreLinks IconHeight IconWidth SuppressDescription VersionSort
+IndexIgnore ..

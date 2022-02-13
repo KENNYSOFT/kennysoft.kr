@@ -1,0 +1,58 @@
+</div>
+<footer></footer>
+<script>
+var link=document.createElement("link");
+link.rel="import";
+link.href="//kennysoft.kr/common/FOOTER.html";
+link.onload=function()
+{
+	var body=document.getElementsByTagName("body")[0];
+	var nodes=link.import.documentElement.getElementsByTagName("body")[0].children;
+	for(var i=0;i<nodes.length;++i)body.appendChild(nodes[i].cloneNode(true));
+};
+document.head.appendChild(link);
+</script>
+<script>
+var i;
+var table=document.getElementsByTagName("table")[0];
+table.className="table table-striped table-hover";
+var trs=table.getElementsByTagName("tr");
+var thead=document.createElement("thead");
+thead.appendChild(trs[0]);
+var tbody=document.createElement("tbody");
+while(trs.length)
+{
+	if(trs[0].firstChild.innerText.trim().endsWith("/"))trs[0].className="table-success";
+	tbody.appendChild(trs[0]);
+}
+table.appendChild(thead);
+table.appendChild(tbody);
+var navbarList=document.getElementById("navbarList");
+var path=window.location.pathname.split("/");
+var href="/";
+for(i=1;i<path.length-1;++i)
+{
+	var li=document.createElement("li");
+	var a=document.createElement("a");
+	href=href+path[i]+"/";
+	if(i==path.length-2)
+	{
+		li.className="nav-item active";
+		a.href="#";
+	}
+	else
+	{
+		li.className="nav-item";
+		a.href=href;
+	}
+	a.className="nav-link";
+	a.innerHTML=decodeURIComponent(path[i]);
+	li.appendChild(a);
+	navbarList.appendChild(li);
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+</html>

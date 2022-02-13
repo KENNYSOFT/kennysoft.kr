@@ -1,0 +1,259 @@
+Options +ExecCGI
+
+ErrorDocument 403 default
+ErrorDocument 404 default
+
+AddCharset utf-8 .md
+#AddHandler markdown-file .md
+#Action markdown-file markdown.cgi
+AddType text/plain .md
+AddHandler cgi-script .cgi
+#DirectoryIndex index.html /markdown.php?md=index.md
+
+RewriteEngine On
+
+# Redirect dothome url
+RewriteCond %{HTTP_HOST} ^kennysoft\.dothome\.co\.kr [NC]
+RewriteRule ^(.*)$ http://kennysoft.kr/$1 [R=permanent,L]
+
+# Redirect mail url
+RewriteCond %{HTTP_HOST} ^mail\.kennysoft\.kr [NC]
+RewriteRule ^(.*)$ http://mail.zoho.com/ [R=temp,L]
+
+# Force HTTP for some domains
+RewriteCond %{HTTP_HOST} ^(rixcloud|nossl|127.0.0.2|manager\.fontrix|nossl\.localhost) [NC]
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R=permanent,L]
+
+# Force HTTPS for some environments
+RewriteCond %{HTTP_USER_AGENT} !(Android|iPhone|iPad) [NC]
+RewriteCond %{HTTP_HOST} !^(rixcloud|nossl|127.0.0.2|manager\.fontrix|nossl\.localhost) [NC]
+RewriteCond %{REQUEST_URI} !^(/\.well-known/acme-challenge)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=permanent,L]
+
+# Force HTTPS for some domains
+RewriteCond %{HTTP_HOST} (font|ssss) [NC]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=permanent,L]
+
+# Common
+#RewriteCond %{ENV:REDIRECT_STATUS} ^$
+#RewriteRule ^common(.*) /common$1 [L]
+
+# KennyFont
+RewriteCond %{HTTP_HOST} !^font\.kennysoft\.kr [NC]
+RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{REQUEST_URI} ^/KennyFont$ [OR]
+RewriteCond %{REQUEST_URI} ^/KennyFont(/.*)
+RewriteRule ^(.*)$ http://font.kennysoft.kr%1 [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^font\.kennysoft\.kr [NC]
+RewriteCond %{DOCUMENT_ROOT}/KennyFont%{REQUEST_URI} -d
+RewriteCond %{REQUEST_URI} ^(.*)[^/]$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^font\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.*)$ /KennyFont%{REQUEST_URI} [L]
+
+# KENNYPDF
+RewriteCond %{HTTP_HOST} !^pdf\.kennysoft\.kr [NC]
+RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{REQUEST_URI} ^/KENNYPDF$ [OR]
+RewriteCond %{REQUEST_URI} ^/KENNYPDF(/.*)
+RewriteRule ^(.*)$ http://pdf.kennysoft.kr%1 [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^pdf\.kennysoft\.kr [NC]
+RewriteCond %{DOCUMENT_ROOT}/KENNYPDF%{REQUEST_URI} -d
+RewriteCond %{REQUEST_URI} ^.*[^/]$
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTPS}:s on:(s)
+RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^pdf\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.*)$ /KENNYPDF%{REQUEST_URI} [L]
+
+# SSS
+RewriteCond %{HTTP_HOST} !^sss\.kennysoft\.kr [NC]
+RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{REQUEST_URI} ^/sss$ [OR]
+RewriteCond %{REQUEST_URI} ^/sss(/.*)
+RewriteRule ^(.*)$ http://sss.kennysoft.kr%1 [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^sss\.kennysoft\.kr [NC]
+RewriteCond %{DOCUMENT_ROOT}/sss%{REQUEST_URI} -d
+RewriteCond %{REQUEST_URI} ^.*[^/]$
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTPS}:s on:(s)
+RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^sss\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.*)$ /sss%{REQUEST_URI} [L]
+
+# SSSS
+RewriteCond %{HTTP_HOST} !^ssss\.kennysoft\.kr [NC]
+RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{REQUEST_URI} ^/ssss$ [OR]
+RewriteCond %{REQUEST_URI} ^/ssss(/.*)
+RewriteRule ^(.*)$ http://ssss.kennysoft.kr%1 [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^ssss\.kennysoft\.kr [NC]
+RewriteCond %{DOCUMENT_ROOT}/ssss%{REQUEST_URI} -d
+RewriteCond %{REQUEST_URI} ^(.*)[^/]$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^ssss\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.*)$ /ssss%{REQUEST_URI} [L]
+
+# Course
+RewriteCond %{HTTP_HOST} !^course\.kennysoft\.kr [NC]
+RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{REQUEST_URI} ^/course$ [OR]
+RewriteCond %{REQUEST_URI} ^/course(/.*)
+RewriteRule ^(.*)$ http://course.kennysoft.kr%1 [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^course\.kennysoft\.kr [NC]
+RewriteCond %{DOCUMENT_ROOT}/course%{REQUEST_URI} -d
+RewriteCond %{REQUEST_URI} ^.*[^/]$
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTPS}:s on:(s)
+RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^course\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.*)$ /course%{REQUEST_URI} [L]
+
+# RixCloud
+RewriteCond %{HTTP_HOST} ^rixcloud\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} !(rixcloud.php) [NC]
+RewriteRule ^(.*)$ /rixcloud.php?$1 [L,QSA]
+
+RewriteCond %{HTTP_HOST} 127.0.0.2
+RewriteCond %{REQUEST_URI} !(Login) [NC]
+RewriteCond %{REQUEST_URI} !(rixcloud.php) [NC]
+RewriteRule ^(.*)$ /rixcloud.php?$1 [L,QSA]
+
+RewriteCond %{HTTP_HOST} ^manager\.fontrix\.co\.kr [NC]
+RewriteCond %{REQUEST_URI} !(Login) [NC]
+RewriteCond %{REQUEST_URI} !(rixcloud.php) [NC]
+RewriteRule ^(.*)$ /rixcloud.php?$1 [L,QSA]
+
+# CV
+RewriteCond %{HTTP_HOST} ^cv\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} ^/$ [NC]
+RewriteRule ^(.*)$ /cv.html [L]
+
+RewriteCond %{HTTP_HOST} ^cv\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} ^/index.amp.html$ [NC]
+RewriteRule ^(.*)$ /cv.amp.html [L]
+
+RewriteCond %{HTTP_HOST} ^cv-ko\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} ^/$ [NC]
+RewriteRule ^(.*)$ /cv-ko.html [L]
+
+RewriteCond %{HTTP_HOST} ^cv-ko\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} ^/index.amp.html$ [NC]
+RewriteRule ^(.*)$ /cv-ko.amp.html [L]
+
+RewriteCond %{HTTP_HOST} !^cv\.kennysoft\.kr [NC]
+RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{REQUEST_URI} ^/cv.html$ [OR]
+RewriteCond %{REQUEST_URI} ^/cv.amp.html
+RewriteRule ^(.*)$ http://cv.kennysoft.kr%1 [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} !^cv-ko\.kennysoft\.kr [NC]
+RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{REQUEST_URI} ^/cv-ko.html$ [OR]
+RewriteCond %{REQUEST_URI} ^/cv-ko.amp.html
+RewriteRule ^(.*)$ http://cv-ko.kennysoft.kr%1 [R=permanent,L]
+
+# Blog
+RewriteCond %{HTTP_HOST} !^blog\.kennysoft\.kr [NC]
+RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{REQUEST_URI} ^/blog$ [OR]
+RewriteCond %{REQUEST_URI} ^/blog(/.*)
+RewriteRule ^(.*)$ http://blog.kennysoft.kr%1 [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^blog\.kennysoft\.kr [NC]
+RewriteCond %{DOCUMENT_ROOT}/blog%{REQUEST_URI} -d
+RewriteCond %{REQUEST_URI} ^.*[^/]$
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTPS}:s on:(s)
+RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^blog\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.*)$ /blog%{REQUEST_URI} [L]
+
+# WcR2
+RewriteCond %{HTTP_HOST} !^wcr2\.kennysoft\.kr [NC]
+RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{REQUEST_URI} ^/WzComparerR2$ [OR]
+RewriteCond %{REQUEST_URI} ^/WzComparerR2(/.*)
+RewriteRule ^(.*)$ http://wcr2.kennysoft.kr%1 [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^wcr2\.kennysoft\.kr [NC]
+RewriteCond %{DOCUMENT_ROOT}/WzComparerR2%{REQUEST_URI} -d
+RewriteCond %{REQUEST_URI} ^.*[^/]$
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTPS}:s on:(s)
+RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
+
+RewriteCond %{HTTP_HOST} ^wcr2\.kennysoft\.kr [NC]
+RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.*)$ /WzComparerR2%{REQUEST_URI} [L]
+
+# ALPS
+#RewriteCond %{HTTP_HOST} !^alps\.kennysoft\.kr [NC]
+#RewriteCond %{HTTP_HOST} !localhost [NC]
+#RewriteCond %{REQUEST_URI} ^/ALPS$ [OR]
+#RewriteCond %{REQUEST_URI} ^/ALPS(/.*)
+#RewriteRule ^(.*)$ http://alps.kennysoft.kr%1 [R=permanent,L]
+
+#RewriteCond %{HTTP_HOST} ^alps\.kennysoft\.kr [NC]
+#RewriteCond %{DOCUMENT_ROOT}/ALPS%{REQUEST_URI} -d
+#RewriteCond %{REQUEST_URI} ^.*[^/]$
+#RewriteCond %{HTTPS} off [OR]
+#RewriteCond %{HTTPS}:s on:(s)
+#RewriteRule ^(.*)$ http%1://%{HTTP_HOST}/$1/ [R=permanent,L]
+
+#RewriteCond %{HTTP_HOST} ^alps\.kennysoft\.kr [NC]
+#RewriteCond %{REQUEST_URI} !(\.well-known/acme-challenge|favicon.ico)
+#RewriteCond %{ENV:REDIRECT_STATUS} ^$
+#RewriteRule ^(.*)$ /ALPS%{REQUEST_URI} [L]
+
+# Markdown
+RewriteCond %{REQUEST_URI} ^(.*)/$
+RewriteCond %{DOCUMENT_ROOT}%1/index.md -f
+RewriteRule ^(.*)$ /markdown.php?md=%{DOCUMENT_ROOT}%1/index.md [L]
+
+RewriteCond %{REQUEST_URI} ^/(.*)\.html$ [NC]
+RewriteCond %{DOCUMENT_ROOT}/%1.html !-f
+RewriteCond %{DOCUMENT_ROOT}/%1.md -f
+RewriteRule ^(.*)$ /markdown.php?md=%1.md [L]
+
+RewriteCond %{REQUEST_URI} ^/(.*)\.amp.html$ [NC]
+RewriteCond %{DOCUMENT_ROOT}/%1.amp.html !-f
+RewriteCond %{DOCUMENT_ROOT}/%1.md -f
+RewriteRule ^(.*)$ /markdown.amp.php?md=%1.md [L]
+
+RewriteCond %{REQUEST_URI} ^/(.*)\.ia.html$ [NC]
+RewriteCond %{DOCUMENT_ROOT}/%1.ia.html !-f
+RewriteCond %{DOCUMENT_ROOT}/%1.md -f
+RewriteRule ^(.*)$ /markdown.ia.php?md=%1.md [L]
+
+RewriteCond %{REQUEST_URI} ^/(.*)\.print.html$ [NC]
+RewriteCond %{DOCUMENT_ROOT}/%1.print.html !-f
+RewriteCond %{DOCUMENT_ROOT}/%1.md -f
+RewriteRule ^(.*)$ /markdown.print.php?md=%1.md [L]

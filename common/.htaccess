@@ -1,0 +1,5 @@
+SetEnvIf Origin ^(https?://(?:.+\.)?kennysoft\.kr(?::\d{1,5})?) CORS_ALLOW_ORIGIN=$1
+#Header always set Access-Control-Allow-Origin %{CORS_ALLOW_ORIGIN}e env=CORS_ALLOW_ORIGIN
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+Header always merge Vary "Origin"

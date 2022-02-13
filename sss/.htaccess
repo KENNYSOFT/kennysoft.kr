@@ -1,0 +1,7 @@
+Options +Indexes +FollowSymLinks
+IndexOptions FancyIndexing FoldersFirst HTMLTable IgnoreCase NameWidth=* SuppressDescription SuppressIcon SuppressRules VersionSort
+IndexIgnore ..
+IndexOrderDefault Descending Date
+AddType text/html .html
+HeaderName /autoindex/HEADER-sss.html
+ReadmeName /autoindex/README.html

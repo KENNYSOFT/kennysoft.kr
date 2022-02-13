@@ -1,0 +1,13 @@
+Options +Indexes +FollowSymLinks
+IndexOptions FancyIndexing FoldersFirst HTMLTable IgnoreCase NameWidth=* SuppressDescription SuppressIcon SuppressRules VersionSort
+AddType text/html .html
+HeaderName /autoindex/HEADER-course.html
+ReadmeName /autoindex/README.html
+
+#RewriteEngine On
+
+# Force HTTPS for some environments
+#RewriteCond %{HTTP_USER_AGENT} !(Android|iPhone|iPad) [NC]
+#RewriteCond %{REQUEST_URI} !^(\.well-known/acme-challenge)
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=permanent,L]
