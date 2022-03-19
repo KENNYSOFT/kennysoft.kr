@@ -1,2 +1,6 @@
 Options +Indexes +FollowSymLinks
-IndexOptions FancyIndexing HTMLTable IconsAreLinks IconHeight IconWidth SuppressDescription
+IndexOptions FancyIndexing FoldersFirst HTMLTable IgnoreCase NameWidth=* SuppressDescription SuppressIcon SuppressRules VersionSort
+IndexIgnore ..
+AddType text/html .html
+HeaderName /autoindex/HEADER-KENNYPDF.html
+ReadmeName /autoindex/README.html
