@@ -1,27 +1,8 @@
 <?php
-require("./include/parsedown-1.8.0-beta-5/Parsedown.php");
-require("./include/parsedown-extra-0.8.0-beta-1/ParsedownExtra.php");
-require("./include/parsedown-extreme-0.1.2/ParsedownExtreme.php");
-require("./include/parsedown-tablespan-1.1.0/ParsedownTablespan.php");
-require("./include/simplehtmldom_1_7/simple_html_dom.php");
-ob_start();
-require("./include/emoji-shortname-to-hex/emoji_unicode.php");
-eval(preg_replace("/<\?([^\\0]*)\?>/m","$1",ob_get_clean()));
-ob_end_clean();
-class ParsedownFinal extends ParsedownExtreme
-{
-	private $tablespan_object,$tablespan_method;
-	public function __construct()
-	{
-		$this->tablespan_object=new ParsedownTablespan();
-		$this->tablespan_method=new ReflectionMethod('ParsedownTablespan','blockTableComplete');
-		$this->tablespan_method->setAccessible(true);
-	}
-	protected function blockTableComplete(array $Block)
-	{
-		return $this->tablespan_method->invoke($this->tablespan_object,$Block);
-	}
-}
+require("./include/parsedown/Parsedown.php");
+require("./include/parsedown-extra/ParsedownExtra.php");
+require("./include/ParsedownExtended/ParsedownExtended.php");
+require("./include/simplehtmldom/simple_html_dom.php");
 $url=((@$_SERVER["HTTPS"]==="on")?"https":"http")."://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $fp=fopen($_GET["md"],"r");
 $md=fread($fp,filesize($_GET["md"]));
@@ -29,11 +10,12 @@ fclose($fp);
 $fp=fopen("common/FOOTER.html","r");
 $footer=fread($fp,filesize("common/FOOTER.html"));
 fclose($fp);
-$Parsedown=new ParsedownFinal();
+$Parsedown=new ParsedownExtended([
+	'tables'=>[
+		'tablespan'=>true
+	]
+]);
 $Parsedown->setBreaksEnabled(true);
-$md=preg_replace("/<br *\/?>(\r?\n)/i","$1",$md);
-preg_match_all("/:([a-zA-Z0-9'_+-]+):/",$md,$emojis);
-foreach($emojis[1] as $emojiname)if(isset($emoji_unicode[$emojiname]))$md=str_replace(":".$emojiname.":","&#x".$emoji_unicode[$emojiname].";",$md);
 $html=$Parsedown->text($md);
 $html=str_replace("<summary>","<details><summary>",$html);
 $html=str_replace("<p></details></p>","</details>",$html);
