@@ -75,10 +75,6 @@ $h1=$dom->find("h1",0);
 			margin-bottom: 16px;
 		}
 
-		.utterances {
-			max-width: unset;
-		}
-
 		date {
 			display: block;
 			text-align: right;
@@ -91,7 +87,7 @@ $h1=$dom->find("h1",0);
 		}
 
 		@media print {
-			.utterences-outer, footer {
+			.giscus-outer, footer {
 				display: none !important;
 			}
 		}
@@ -118,13 +114,20 @@ echo($dom."\n");
 if(strpos($_SERVER["HTTP_HOST"],"localhost")===false)
 {
 ?>
-<div class="utterences-outer">
+<div class="giscus-outer">
 <hr>
 <h1>댓글</h1>
-<script src="https://utteranc.es/client.js"
-        repo="KENNYSOFT/markdown-comments"
-        issue-term="url"
-        theme="github-light"
+<script src="https://giscus.app/client.js"
+		data-repo="KENNYSOFT/markdown-comments"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkyNzI5MzkxOTY="
+        data-category="General"
+        data-category-id="DIC_kwDOEES4vM4COixX"
+        data-mapping="url"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
         crossorigin="anonymous"
         async>
 </script>
