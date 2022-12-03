@@ -46,9 +46,9 @@ $h1=$dom->find("h1",0);
 <head>
 	<meta charset="UTF-8">
 	<title><?php if(!$production)echo("[DEV] ");echo(is_null($h1)?"Markdown":$h1->plaintext); ?></title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css">
 	<link rel="stylesheet" href="https://fat.github.io/zoom.js/css/zoom.css">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/vs.min.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css">
 	<link rel="stylesheet" href="https://unicodey.com/js-emoji/demo/emoji.css">
 	<style>
 		.markdown-body {
@@ -57,6 +57,11 @@ $h1=$dom->find("h1",0);
 			max-width: 980px;
 			margin: 0 auto;
 			padding: 45px;
+		}
+
+		pre code.hljs {
+			display: inline;
+			padding: 0;
 		}
 
 		.markdown-body pre > code.wrap {
@@ -74,6 +79,10 @@ $h1=$dom->find("h1",0);
 
 		.markdown-body details {
 			margin-bottom: 16px;
+		}
+
+		.markdown-body sup > a::before, .markdown-body sup > a::after {
+			content: "";
 		}
 
 		date {
@@ -192,9 +201,10 @@ const printmode = () => {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="https://fat.github.io/zoom.js/js/zoom.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/dos.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/shell.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/dos.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/apache.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/groovy.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 </body>

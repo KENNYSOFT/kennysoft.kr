@@ -11,7 +11,7 @@ $fp=fopen("common/FOOTER.html","r");
 $footer=fread($fp,filesize("common/FOOTER.html"));
 fclose($fp);
 $curl=curl_init();
-curl_setopt($curl,CURLOPT_URL,"cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css");
+curl_setopt($curl,CURLOPT_URL,"cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css");
 curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
 $css=str_replace("!important","",curl_exec($curl));
 curl_close($curl);
@@ -107,6 +107,10 @@ $h1=$dom->find("h1",0);
 
 		.markdown-body details {
 			margin-bottom: 16px;
+		}
+
+		.markdown-body sup > a::before, .markdown-body sup > a::after {
+			content: "";
 		}
 
 		.date {
