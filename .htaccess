@@ -36,6 +36,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=permanent,L]
 # KennyFont
 RewriteCond %{HTTP_HOST} !^font\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{HTTP_HOST} !192\.168\.[0-9]+\.[0-9]+ [NC]
 RewriteCond %{REQUEST_URI} ^/KennyFont$ [OR]
 RewriteCond %{REQUEST_URI} ^/KennyFont(/.*)
 RewriteRule ^(.*)$ http://font.kennysoft.kr%1 [R=permanent,L]
@@ -52,6 +53,7 @@ RewriteRule ^(.*)$ /KennyFont%{REQUEST_URI} [L]
 # KENNYPDF
 RewriteCond %{HTTP_HOST} !^pdf\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{HTTP_HOST} !192\.168\.[0-9]+\.[0-9]+ [NC]
 RewriteCond %{REQUEST_URI} ^/KENNYPDF$ [OR]
 RewriteCond %{REQUEST_URI} ^/KENNYPDF(/.*)
 RewriteRule ^(.*)$ http://pdf.kennysoft.kr%1 [R=permanent,L]
@@ -70,6 +72,7 @@ RewriteRule ^(.*)$ /KENNYPDF%{REQUEST_URI} [L]
 # SSS
 RewriteCond %{HTTP_HOST} !^sss\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{HTTP_HOST} !192\.168\.[0-9]+\.[0-9]+ [NC]
 RewriteCond %{REQUEST_URI} ^/sss$ [OR]
 RewriteCond %{REQUEST_URI} ^/sss(/.*)
 RewriteRule ^(.*)$ http://sss.kennysoft.kr%1 [R=permanent,L]
@@ -88,6 +91,7 @@ RewriteRule ^(.*)$ /sss%{REQUEST_URI} [L]
 # SSSS
 RewriteCond %{HTTP_HOST} !^ssss\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{HTTP_HOST} !192\.168\.[0-9]+\.[0-9]+ [NC]
 RewriteCond %{REQUEST_URI} ^/ssss$ [OR]
 RewriteCond %{REQUEST_URI} ^/ssss(/.*)
 RewriteRule ^(.*)$ http://ssss.kennysoft.kr%1 [R=permanent,L]
@@ -104,6 +108,7 @@ RewriteRule ^(.*)$ /ssss%{REQUEST_URI} [L]
 # Course
 RewriteCond %{HTTP_HOST} !^course\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{HTTP_HOST} !192\.168\.[0-9]+\.[0-9]+ [NC]
 RewriteCond %{REQUEST_URI} ^/course$ [OR]
 RewriteCond %{REQUEST_URI} ^/course(/.*)
 RewriteRule ^(.*)$ http://course.kennysoft.kr%1 [R=permanent,L]
@@ -153,12 +158,14 @@ RewriteRule ^(.*)$ /cv-ko.amp.html [L]
 
 RewriteCond %{HTTP_HOST} !^cv\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{HTTP_HOST} !192\.168\.[0-9]+\.[0-9]+ [NC]
 RewriteCond %{REQUEST_URI} ^/cv.html$ [OR]
 RewriteCond %{REQUEST_URI} ^/cv.amp.html
 RewriteRule ^(.*)$ http://cv.kennysoft.kr%1 [R=permanent,L]
 
 RewriteCond %{HTTP_HOST} !^cv-ko\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{HTTP_HOST} !192\.168\.[0-9]+\.[0-9]+ [NC]
 RewriteCond %{REQUEST_URI} ^/cv-ko.html$ [OR]
 RewriteCond %{REQUEST_URI} ^/cv-ko.amp.html
 RewriteRule ^(.*)$ http://cv-ko.kennysoft.kr%1 [R=permanent,L]
@@ -166,6 +173,7 @@ RewriteRule ^(.*)$ http://cv-ko.kennysoft.kr%1 [R=permanent,L]
 # Blog
 RewriteCond %{HTTP_HOST} !^blog\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{HTTP_HOST} !192\.168\.[0-9]+\.[0-9]+ [NC]
 RewriteCond %{REQUEST_URI} ^/blog$ [OR]
 RewriteCond %{REQUEST_URI} ^/blog(/.*)
 RewriteRule ^(.*)$ http://blog.kennysoft.kr%1 [R=permanent,L]
@@ -184,6 +192,7 @@ RewriteRule ^(.*)$ /blog%{REQUEST_URI} [L]
 # WcR2
 RewriteCond %{HTTP_HOST} !^wcr2\.kennysoft\.kr [NC]
 RewriteCond %{HTTP_HOST} !localhost [NC]
+RewriteCond %{HTTP_HOST} !192\.168\.[0-9]+\.[0-9]+ [NC]
 RewriteCond %{REQUEST_URI} ^/WzComparerR2$ [OR]
 RewriteCond %{REQUEST_URI} ^/WzComparerR2(/.*)
 RewriteRule ^(.*)$ http://wcr2.kennysoft.kr%1 [R=permanent,L]

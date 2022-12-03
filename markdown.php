@@ -3,6 +3,7 @@ require("./include/parsedown/Parsedown.php");
 require("./include/parsedown-extra/ParsedownExtra.php");
 require("./include/ParsedownExtended/ParsedownExtended.php");
 require("./include/simplehtmldom/simple_html_dom.php");
+$production=strpos($_SERVER["HTTP_HOST"],"localhost")===false&&strpos($_SERVER["HTTP_HOST"],"192.168")===false;
 $url=((@$_SERVER["HTTPS"]==="on")?"https":"http")."://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $fp=fopen($_GET["md"],"r");
 $md=fread($fp,filesize($_GET["md"]));
@@ -44,7 +45,7 @@ $h1=$dom->find("h1",0);
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title><?php if(strpos($_SERVER["HTTP_HOST"],"localhost")!==false)echo("[DEV] ");echo(is_null($h1)?"Markdown":$h1->plaintext); ?></title>
+	<title><?php if(!$production)echo("[DEV] ");echo(is_null($h1)?"Markdown":$h1->plaintext); ?></title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
 	<link rel="stylesheet" href="https://fat.github.io/zoom.js/css/zoom.css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/vs.min.css">
@@ -111,7 +112,7 @@ else if(strrpos($_SERVER["REQUEST_URI"],".html",strlen($_SERVER["REQUEST_URI"])-
 <div class="markdown-body">
 <?php
 echo($dom."\n");
-if(strpos($_SERVER["HTTP_HOST"],"localhost")===false)
+if($production)
 {
 ?>
 <div class="giscus-outer">
@@ -138,7 +139,7 @@ if(strpos($_SERVER["HTTP_HOST"],"localhost")===false)
 <footer><?php echo($footer); ?></footer>
 </div>
 <?php
-if(strpos($_SERVER["HTTP_HOST"],"localhost")!==false)
+if(!$production)
 {
 ?>
 <script>
@@ -176,7 +177,7 @@ const printmode = () => {
 	document.getElementById("speller").remove();
 	document.getElementsByTagName("footer")[0].remove();
 	const as = document.getElementsByTagName("a");
-	for (let i = 0; i < as.length; ++i) if (as[i].hostname === "localhost") as[i].hostname = "kennysoft.kr";
+	for (let i = 0; i < as.length; ++i) if (as[i].hostname === "localhost" || as[i].hostname.startsWith("192.168")) as[i].hostname = "kennysoft.kr";
 	document.title = document.title.replace("[DEV] ", "");
 };
 </script>
