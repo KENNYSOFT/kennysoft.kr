@@ -206,6 +206,8 @@ const printmode = () => {
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/apache.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/groovy.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js">
+</script>
 </body>
 </html>
