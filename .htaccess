@@ -25,7 +25,7 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=permanent,L]
 
 # Force HTTPS for some domains
-RewriteCond %{HTTP_HOST} (font|ssss) [NC]
+RewriteCond %{HTTP_HOST} (font|ssss|polls) [NC]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=permanent,L]
 
