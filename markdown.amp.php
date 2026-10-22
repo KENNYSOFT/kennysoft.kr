@@ -1,7 +1,8 @@
 <?php
 require("./include/parsedown/Parsedown.php");
 require("./include/parsedown-extra/ParsedownExtra.php");
-require("./include/ParsedownExtended/ParsedownExtended.php");
+require("./include/ParsedownExtended/src/ParsedownExtended.php");
+use BenjaminHoegh\ParsedownExtended\ParsedownExtended;
 require("./include/simplehtmldom/simple_html_dom.php");
 $url=((@$_SERVER["HTTPS"]==="on")?"https":"http")."://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $fp=fopen($_GET["md"],"r");
@@ -15,11 +16,7 @@ curl_setopt($curl,CURLOPT_URL,"cdnjs.cloudflare.com/ajax/libs/github-markdown-cs
 curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
 $css=str_replace("!important","",curl_exec($curl));
 curl_close($curl);
-$Parsedown=new ParsedownExtended([
-	'tables'=>[
-		'tablespan'=>true
-	]
-]);
+$Parsedown=new ParsedownExtended();
 $Parsedown->setBreaksEnabled(true);
 $html=$Parsedown->text($md);
 $html=str_replace("<summary>","<details><summary>",$html);

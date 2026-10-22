@@ -1,7 +1,8 @@
 <?php
 require("./include/parsedown/Parsedown.php");
 require("./include/parsedown-extra/ParsedownExtra.php");
-require("./include/ParsedownExtended/ParsedownExtended.php");
+require("./include/ParsedownExtended/src/ParsedownExtended.php");
+use BenjaminHoegh\ParsedownExtended\ParsedownExtended;
 require("./include/simplehtmldom/simple_html_dom.php");
 $production=strpos($_SERVER["HTTP_HOST"],"localhost")===false&&strpos($_SERVER["HTTP_HOST"],"192.168")===false;
 $url=((@$_SERVER["HTTPS"]==="on")?"https":"http")."://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
@@ -11,11 +12,7 @@ fclose($fp);
 $fp=fopen("common/FOOTER.html","r");
 $footer=fread($fp,filesize("common/FOOTER.html"));
 fclose($fp);
-$Parsedown=new ParsedownExtended([
-	'tables'=>[
-		'tablespan'=>true
-	]
-]);
+$Parsedown=new ParsedownExtended();
 $Parsedown->setBreaksEnabled(true);
 $html=$Parsedown->text($md);
 $html=str_replace("<summary>","<details><summary>",$html);
