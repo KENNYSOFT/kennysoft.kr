@@ -13,6 +13,7 @@ $fp=fopen("common/FOOTER.html","r");
 $footer=fread($fp,filesize("common/FOOTER.html"));
 fclose($fp);
 $Parsedown=new ParsedownExtended();
+$Parsedown->config()->set('emphasis',['keystrokes'=>false]);
 $html=$Parsedown->text($md);
 $html=str_replace("<summary>","<details><summary>",$html);
 $html=str_replace("<p></details></p>","</details>",$html);

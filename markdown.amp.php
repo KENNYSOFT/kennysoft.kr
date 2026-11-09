@@ -17,6 +17,7 @@ curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
 $css=str_replace("!important","",curl_exec($curl));
 curl_close($curl);
 $Parsedown=new ParsedownExtended();
+$Parsedown->config()->set('emphasis',['keystrokes'=>false]);
 $html=$Parsedown->text($md);
 $html=str_replace("<summary>","<details><summary>",$html);
 $html=str_replace("<p></details></p>","</details>",$html);
